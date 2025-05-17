@@ -36,4 +36,4 @@ def not_found(error):
     }), 404
 
 
-if __name__ == '__main__': app.run(debug=False)
+if __name__ == '__main__': app.run(host='0.0.0.0', port=10000, debug=False)
