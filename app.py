@@ -20,15 +20,10 @@ def home():
 
 @app.route('/pascal', methods=['GET'])
 def pascal_triangle():
-    rows_param = request.args.get('rows', default='0')
-    
-    if not rows_param.isdigit(): return jsonify({"error": "'rows' must be a positive integer"}), 400
-    
+    rows_param = request.args.get('rows', default='0')    
+    if not rows_param.isdigit(): return jsonify({"error": "'rows' must be a positive integer"}), 400    
     rows = int(rows_param)
-
-    if rows < 1: return jsonify({"error": "Number of rows must be >= 1"}), 400
-    
-    
+    if rows < 1: return jsonify({"error": "Number of rows must be >= 1"}), 400    
     triangle = generate_pascal_triangle(rows)
     return jsonify({"pascal_triangle": triangle})
 
@@ -40,5 +35,5 @@ def not_found(error):
         "status_code": 404
     }), 404
 
-if __name__ == '__main__':
-    app.run(debug=False)
+
+if __name__ == '__main__': app.run(debug=False)
