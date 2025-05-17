@@ -17,6 +17,7 @@ def generate_pascal_triangle(rows):
 def home():
     return jsonify({"success": "Nothing to do here"}), 200
 
+
 @app.route('/pascal', methods=['GET'])
 def pascal_triangle():
     rows_param = request.args.get('rows', default='0')
@@ -31,5 +32,13 @@ def pascal_triangle():
     triangle = generate_pascal_triangle(rows)
     return jsonify({"pascal_triangle": triangle})
 
+
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({
+        "error": "Resource not found. Valid endpoints: /pascal",
+        "status_code": 404
+    }), 404
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
